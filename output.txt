@@ -1,33 +1,24 @@
-The current speed of vehicle 3 is: 0 km/h.
+The current speed of truck 1 is: 20 km/h.
 
-The max speed of vehicle 3 is: 2000 km/h.
+The max speed of truck 1 is: 100 km/h.
 
-Vehicle 3's info
-License plate: A1R2
-Colour: white
-Number of doors: 4
-Speed: 5
-Max speed: 2000
+Truck 1's info
+License plate: SHVFW
+Colour: blue
+Number of doors: 2
+Number of wheels: 6
+Length: 20
+Speed: 25
+Max speed: 100
 
-The current speed of vehicle null is: 0 km/h.
+The current speed of bike 1 is: 5 km/h.
 
-The max speed of vehicle null is: 0 km/h.
+The max speed of bike 1 is: 20 km/h.
 
-Vehicle null's info
-License plate: ...
-Colour: yellow
-Number of doors: 0
-Speed: 5
-Max speed: 0
-
-The current speed of bike 5 is: 0 km/h.
-
-The max speed of bike 5 is: 0 km/h.
-
-Bike 5's info
+Bike 1's info
 Colour: purple
-Number of wheels: 1
+Number of wheels: 2
 Number of seats: 1
-Speed: 5
-Max speed: 0
+Speed: 10
+Max speed: 20
 

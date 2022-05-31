@@ -19,8 +19,6 @@ class Vehicle {
     private var doorsNum: String?
     internal var speed: String
     internal var maxSpeed: String
-    private var strArray: [String] = ["0", "0", "0", "0", "0", "0"]
-    private var outputPath: String = "/home/runner/Unit3-07-Swift/output.txt"
 
     // Constructor
     init(carNum: String,
@@ -49,147 +47,19 @@ class Vehicle {
     }
 
     // Accelerates the vehicle by a specified km/h
-    func accelerate(acceleration: String) {
-        let accelerationInt: Int = Int(acceleration) ?? 0
-        var speedInt: Int = Int(speed) ?? 0
-
-        // Sets new speed value
-        speedInt += accelerationInt
-        speed = String(speedInt)
-    }
+    func accelerate(acceleration: String) {}
 
     // Slows the vehicle by a specified km/h
-    func brake(deceleration: String) {
-        let decelerationInt: Int = Int(deceleration) ?? 0
-        var speedInt: Int = Int(speed) ?? 0
-
-        // Sets new speed value
-        speedInt -= decelerationInt
-        speed = String(speedInt)
-    }
+    func brake(deceleration: String) {}
 
     // Displays the vehicle's current speed to the output text file
-    func getSpeed() {
-        // Adding string to array
-        var stringArray: [String] = ["0"]
-        stringArray[0] = "The current speed of vehicle "
-            + "\(vehicleNum) is: \(speed) km/h."
-
-        // Create string containing elements of the array
-        // separated by a new line
-        let joined = stringArray.joined(separator: "\n")
-        let newLine = "\n"
-
-        // Path to the output file
-        let saveToPath = URL(string: outputPath)
-
-        do {
-            // Code from: 
-            // https://stackoverflow.com/questions/27327067/
-            // append-text-or-data-to-text-file-in-swift
-            if let fileUpdater = try? FileHandle(forUpdating: saveToPath!) {
-
-                // Function which when called will cause all updates
-                // to start from end of the file
-                fileUpdater.seekToEndOfFile()
-
-                // Which lets the caller move editing to any position within
-                // the file by supplying an offset
-                fileUpdater.write(joined.data(using: .utf8)!)
-                fileUpdater.write(newLine.data(using: .utf8)!)
-                fileUpdater.write(newLine.data(using: .utf8)!)
-
-                // Once we convert our new content to data and write it,
-                // we close the file and that’s it!
-                fileUpdater.closeFile()
-            }
-        }
-        print("Vehicle \(vehicleNum)'s current speed is displayed"
-            + " to 'output.txt'")
-    }
+    func getSpeed() {}
 
     // Displays the vehicle's max speed to the output text file
-    func getMaxSpeed() {
-        // Adding string to array
-        var stringArray2: [String] = ["0"]
-        stringArray2[0] = "The max speed of vehicle "
-            + "\(vehicleNum) is: \(maxSpeed) km/h."
-
-        // Create string containing elements of the array
-        // separated by a new line
-        let joined = stringArray2.joined(separator: "\n")
-        let newLine = "\n"
-
-        // Path to the output file
-        let saveToPath = URL(string: outputPath)
-
-        do {
-            // Code from: 
-            // https://stackoverflow.com/questions/27327067/
-            // append-text-or-data-to-text-file-in-swift
-            if let fileUpdater = try? FileHandle(forUpdating: saveToPath!) {
-
-                // Function which when called will cause all updates
-                // to start from end of the file
-                fileUpdater.seekToEndOfFile()
-
-                // Which lets the caller move editing to any position within
-                // the file by supplying an offset
-                fileUpdater.write(joined.data(using: .utf8)!)
-                fileUpdater.write(newLine.data(using: .utf8)!)
-                fileUpdater.write(newLine.data(using: .utf8)!)
-
-                // Once we convert our new content to data and write it,
-                // we close the file and that’s it!
-                fileUpdater.closeFile()
-            }
-        }
-        print("Vehicle \(vehicleNum)'s max speed is displayed "
-            + "to 'output.txt'")
-    }
+    func getMaxSpeed() {}
 
     // Displays the vehicle's information to the output text file
-    func getInfo() {
-        // Adding vehicle's information to an array
-        strArray[0] = "Vehicle \(vehicleNum)'s info"
-        strArray[1] = "License plate: \(licensePlate!)"
-        strArray[2] = "Colour: \(colour)"
-        strArray[3] = "Number of doors: \(doorsNum!)"
-        strArray[4] = "Speed: \(speed)"
-        strArray[5] = "Max speed: \(maxSpeed)"
-
-        // Create string containing elements of the array
-        // separated by a new line
-        let joined = strArray.joined(separator: "\n")
-        let newLine = "\n"
-
-        // Path to the output file
-        let saveToPath = URL(string: outputPath)
-
-        do {
-            // Code from: 
-            // https://stackoverflow.com/questions/27327067/
-            // append-text-or-data-to-text-file-in-swift
-            if let fileUpdater = try? FileHandle(forUpdating: saveToPath!) {
-
-                // Function which when called will cause all updates
-                // to start from end of the file
-                fileUpdater.seekToEndOfFile()
-
-                // Which lets the caller move editing to any position within
-                // the file by supplying an offset
-                fileUpdater.write(joined.data(using: .utf8)!)
-                fileUpdater.write(newLine.data(using: .utf8)!)
-                fileUpdater.write(newLine.data(using: .utf8)!)
-
-                // Once we convert our new content to data and write it,
-                // we close the file and that’s it!
-                fileUpdater.closeFile()
-            }
-        }
-        print("Vehicle \(vehicleNum)'s information is displayed"
-            + " to 'output.txt'")
-    }
+    func getInfo() {}
 }
 
 class Truck: Vehicle {
@@ -225,6 +95,26 @@ class Truck: Vehicle {
         length = truckLength
         speed = truckSpeed
         maxSpeed = truckMaxSpeed
+    }
+
+    // Accelerates the vehicle by a specified km/h
+    override func accelerate(acceleration: String) {
+        let accelerationInt: Int = Int(acceleration) ?? 0
+        var speedInt: Int = Int(speed) ?? 0
+
+        // Sets new speed value
+        speedInt += accelerationInt
+        speed = String(speedInt)
+    }
+
+    // Slows the vehicle by a specified km/h
+    override func brake(deceleration: String) {
+        let decelerationInt: Int = Int(deceleration) ?? 0
+        var speedInt: Int = Int(speed) ?? 0
+
+        // Sets new speed value
+        speedInt -= decelerationInt
+        speed = String(speedInt)
     }
 
     // Displays the truck's current speed to the output text file
@@ -378,6 +268,26 @@ class Bike: Vehicle {
         maxSpeed = bikeMaxSpeed
     }
 
+    // Accelerates the vehicle by a specified km/h
+    override func accelerate(acceleration: String) {
+        let accelerationInt: Int = Int(acceleration) ?? 0
+        var speedInt: Int = Int(speed) ?? 0
+
+        // Sets new speed value
+        speedInt += accelerationInt
+        speed = String(speedInt)
+    }
+
+    // Slows the vehicle by a specified km/h
+    override func brake(deceleration: String) {
+        let decelerationInt: Int = Int(deceleration) ?? 0
+        var speedInt: Int = Int(speed) ?? 0
+
+        // Sets new speed value
+        speedInt -= decelerationInt
+        speed = String(speedInt)
+    }
+
     // Displays the bike's current speed to the output text file
     override func getSpeed() {
         // Adding string to array
@@ -464,7 +374,7 @@ class Bike: Vehicle {
         strArray[0] = "Bike \(vehicleNum)'s info"
         strArray[1] = "Colour: \(colour)"
         strArray[2] = "Number of wheels: \(wheelsNum)"
-        strArray[3] = "Number of seats: \(wheelsNum)"
+        strArray[3] = "Number of seats: \(seatsNum)"
         strArray[4] = "Speed: \(speed)"
         strArray[5] = "Max speed: \(maxSpeed)"
 
@@ -688,77 +598,8 @@ do {
                 // Get the bike's information
                 aBike.getInfo()
             } else {
-                for string in list {
-                    if counter == 1 {
-                        // Check if the vehicle number is an integer
-                        let carNumInt = Int(string) ?? -23847125624345235
-
-                        if carNumInt == -23847125624345235 {
-                            // Set the vehicle number value to null if
-                            // the input is invalid
-                            list[counter] = "null"
-                        }
-                    } else if counter == 2 {
-                        // Check if a license plate was written
-                        if string == "" {
-                            // Set the license plate to XXX XXX
-                            // if the field is empty
-                            list[counter] = "XXX XXX"
-                        }
-                    } else if counter == 4 {
-                        // Check if the number of doors is an integer
-                        let doorsNumInt = Int(string) ?? -23847125624345235
-
-                        if doorsNumInt == -23847125624345235 {
-                            // Set the door number value to "0"
-                            // if the input is invalid
-                            list[counter] = "0"
-                        } else {
-                            list[counter] = String(doorsNumInt)
-                        }
-                    } else if counter == 5 {
-                        // Check if the speed is an integer
-                        let speedInt = Int(string) ?? -23847125624345235
-
-                        if speedInt == -23847125624345235 {
-                            // Set the speed value to "0"
-                            // if the input is invalid
-                            list[counter] = "0"
-                        }
-                    } else if counter == 6 {
-                        // Check if the max speed is an integer
-                        let maxSpeedInt = Int(string) ?? -23847125624345235
-
-                        if maxSpeedInt == -23847125624345235 {
-                            // Set the max speed value to "0"
-                            // if the input is invalid
-                            list[counter] = "0"
-                        }
-                    }
-                    counter += 1
-                }
-                // Create aVehicle object containing the information of each string
-                let aVehicle = Vehicle(carNum: list[1],
-                    carLicensePlate: list[2],
-                    carColour: list[3],
-                    carDoorsNum: list[4],
-                    carSpeed: list[5],
-                    carMaxSpeed: list[6])
-
-                // Get the current speed of the vehicle
-                aVehicle.getSpeed()
-
-                // Get the max speed of the vehicle
-                aVehicle.getMaxSpeed()
-
-                // Accelerate the vehicle by 10 km/h
-                aVehicle.accelerate(acceleration: "10")
-
-                // Deceleration the vehicle by 10 km/h
-                aVehicle.brake(deceleration: "5")
-
-                // Get the vehicle's information
-                aVehicle.getInfo()
+                // Message if the vehicle is not a truck or bike
+                print("Please enter a valid vehicle.")
             }
         }
     }
